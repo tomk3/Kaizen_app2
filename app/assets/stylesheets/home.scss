@@ -1,0 +1,45 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 共通レイアウト ================================ */
+header {
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+hr.bothline {
+  border-width: 3px;
+  border-color: #33bbff;
+}
+
+p {
+  font-size: 12px;
+}
+label {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+footer {
+  font-size: 12px;
+  color: grey;
+}
+
+/* フラッシュ ================================ */
+.flash {
+  padding: 10px 0;
+  color: white;
+  background: #33bbff;
+  text-align: center;
+  position: absolute;
+  top: 64px;
+  z-index: 10;
+  width: 100%;
+  border-radius: 0 0 2px 2px;
+  font-size: 14px;
+}

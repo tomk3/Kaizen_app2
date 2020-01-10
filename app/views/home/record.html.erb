@@ -1,0 +1,107 @@
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">本日の製造記録データを下記フォームに記入してください。</div>
+                <div class="card-body">
+
+                    <%= form_tag("/record/create") do %>
+                        <div class="form-group row">
+                            <label for="date" class="col-md-4 col-form-label text-md-right">製造日</label>
+                            <div class="col-md-6">
+                                <input type="text" id="date" class="form-control" name="date" value="<%= Date.today %>" required autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="prod_name" class="col-md-4 col-form-label text-md-right">製造品目</label>
+                            <div class="col-md-6">
+                              <%= form_for @product, url: product_new_path do |f| %>
+                                <%= f.collection_select :prod_name, Product.all, :id, :prod_name, {}, class: "form-control", :include_blank => true %>
+                              <% end %>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lot" class="col-md-4 col-form-label text-md-right">ロット番号</label>
+                            <div class="col-md-6">
+                                <input type="text" id="lot" class="form-control" name="lot" placeholder="例) 11A22M" required autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="input_vol" class="col-md-4 col-form-label text-md-right">投入量</label>
+                            <div class="col-md-6">
+                                <input type="text" id="input_vol" class="form-control" name="input_vol" value="" placeholder="例) 10000" required autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="output_vol" class="col-md-4 col-form-label text-md-right">出来高</label>
+                            <div class="col-md-6">
+                                <input type="text" id="output_vol" class="form-control" name="output_vol" value="" placeholder="例) 5000" required autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="yield" class="col-md-4 col-form-label text-md-right">収率</label>
+                            <div class="col-md-6">
+                                <input type="text" id="yield" class="form-control" name="yield" value="" readonly required autofocus>
+                            </div>
+                            <script>
+                            $(function() {
+                              $('input[type="text"]').change(function() {
+                                var o = $("#output_vol").val();
+                                var i = $("#input_vol").val();
+                                var so = parseInt(o);
+                                var si = parseInt(i);
+                                var result = so/si;
+                                $('#yield').val(result.toFixed(2));
+                              });
+                            });
+                            </script>
+                        </div>
+                        <div class="form-group row">
+                            <label for="def_total" class="col-md-4 col-form-label text-md-right">不良総計</label>
+                            <div class="col-md-6">
+                                <input type="text" id="def_total" class="form-control" name="def_total" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-5 offset-md-4">
+                              <table>
+                                  <tbody>
+                                      <tr>
+                                        <td>種類内訳</td>
+                                        <td>不良数</td>
+                                      </tr>
+                                      <tr>
+                                          <td><input type="text" name="name" class="form-control" name="def_type" required autofocus></td>
+                                          <td><input type="text" name="name" class="form-control" name="def_count" required autofocus></td>
+                                          <td><button class="remove">-</button></td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                              <button id="addRow">+ 追加</button>
+                            <script>
+                            $(function(){
+                                $('#addRow').click(function(){
+                                    var html = '<tr><td><input type="text" name="name" class="form-control" name="def_type" required autofocus></td><td><input type="text" name="name" class="form-control" name="def_count" required autofocus></td><td><button class="remove">-</button></td></tr>';
+                                    $('tbody').append(html);
+                                });
+                                $(document).on('click', '.remove', function() {
+                                    $(this).parents('tr').remove();
+                                });
+                            });
+                            </script>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-md-3 offset-md-9">
+                            <input type="submit" value="記録する" class="btn btn-primary">
+                          </div>
+                        </div>
+                    <% end %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

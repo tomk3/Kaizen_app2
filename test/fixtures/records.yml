@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2020-01-09
+  lot: MyString
+  prod_name: MyString
+  yield: 1.5
+  def_total: 1
+
+two:
+  date: 2020-01-09
+  lot: MyString
+  prod_name: MyString
+  yield: 1.5
+  def_total: 1

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  def_type: MyString
+  date: 2020-01-10
+  def_count: 1
+
+two:
+  def_type: MyString
+  date: 2020-01-10
+  def_count: 1
