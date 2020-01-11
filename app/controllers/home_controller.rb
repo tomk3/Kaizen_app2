@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       yield: params[:yield],
       def_total: params[:def_total]
     )
-  
+
     if @record.save
       flash[:notice] = "製造記録登録が完了しました"
       redirect_to("/record")
@@ -25,8 +25,25 @@ class HomeController < ApplicationController
   end
 
   def graph
+    @product = Product.new
+    @record_a = Record.where(prod_name: "Aricept")
+    @record_b = Record.where(prod_name: "metycobal")
+    @record_c = Record.where(prod_name: "myonal")
+    @record_d = Record.where(prod_name: "detantol")
+    @record_e = Record.where(prod_name: "Lenvima")
 
+    @data = [
+      {
+        date: @record_a.pluck(:date),
+        def_total: @record_a.pluck(:def_total)
+      },
+      {
+        date: @record_b.pluck(:date),
+        def_total: @record_b.pluck(:def_total)
+      }
+    ]
   end
+
 
 
 end

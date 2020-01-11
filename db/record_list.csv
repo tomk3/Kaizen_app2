@@ -1,8 +1,15 @@
 date,prod_name,lot,yield,def_total
-2020/1/12,Aricept,1A1M,0.9 ,500
-2020/1/13,Aricept,2A2M,0.8 ,600
-2020/1/14,Aricept,3A3M,0.7 ,700
-2020/1/15,Aricept,4A4M,0.5 ,1200
-2020/1/16,Aricept,5A5M,0.8 ,600
-2020/1/17,Aricept,6A6M,0.9 ,300
-2020/1/18,Aricept,7A7M,0.8 ,400
+2020/1/12,Aricept,1A1M,0.9,500
+2020/1/13,Aricept,2A2M,0.8,600
+2020/1/14,Aricept,3A3M,0.7,700
+2020/1/15,Aricept,4A4M,0.5,1200
+2020/1/16,Aricept,5A5M,0.8,600
+2020/1/17,Aricept,6A6M,0.9,300
+2020/1/18,Aricept,7A7M,0.8,400
+2020/1/12,metycobal,1B1M,0.5,800
+2020/1/13,metycobal,2B2M,0.6,800
+2020/1/14,metycobal,3B3M,0.5,900
+2020/1/15,metycobal,4B4M,0.4,800
+2020/1/16,metycobal,5B5M,0.6,700
+2020/1/17,metycobal,6B6M,0.5,800
+2020/1/18,metycobal,7B7M,0.6,900

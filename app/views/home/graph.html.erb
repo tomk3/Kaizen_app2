@@ -8,6 +8,22 @@
                 <div class="card-header">KPI時系列推移</div>
                 <div class="card-body">
                   <div class="form-group row">
+                      <label for="prod_name" class="col-md-4 col-form-label text-md-right">品目選択</label>
+                      <div class="col-md-6 test3">
+                        <%= form_for @product, url: product_new_path do |f| %>
+                          <%= f.collection_select :prod_name, Product.all, :id, :prod_name, {}, class: "form-control", :include_blank => true %>
+                        <% end %>
+                      </div>
+                      <!--
+                      <script>
+                      $(".test3").on("change", function() {
+                          var prod_name = $('option:selected').val();
+
+                      });
+                      </script>
+                      -->
+                  </div>
+                  <div class="form-group row">
                       <label for="date" class="col-md-2 col-form-label text-md-left">収率</label>
                       <div class="col-md-10">
                         <%= line_chart Record.pluck(:date, :yield) %>
@@ -17,6 +33,12 @@
                       <label for="date" class="col-md-2 col-form-label text-md-left">不良総計</label>
                       <div class="col-md-10">
                         <%= column_chart Record.pluck(:date, :def_total) %>
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="date" class="col-md-2 col-form-label text-md-left">不良内訳</label>
+                      <div class="col-md-10">
+                        <%= column_chart @data, stacked: true %>
                       </div>
                   </div>
 
