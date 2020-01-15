@@ -1,11 +1,10 @@
 class HomeController < ApplicationController
   def login
-
   end
 
   def record
     @product = Product.new
-
+    @record = Record.new
   end
 
   def create
@@ -17,8 +16,16 @@ class HomeController < ApplicationController
     )
 
     if @record.save
-      flash[:notice] = "製造記録登録が完了しました"
-      redirect_to("/record")
+      if params[:def_type].present?
+        @defect = Defect.new(
+          record_id: Record.all.last.id,
+          date: Record.all.last.date,
+          def_type: params[:def_type],
+          def_count: params[:def_count]
+          )
+        flash[:notice] = "製造記録登録が完了しました"
+        redirect_to("/record")
+      end
     else
       render("record/record")
     end
@@ -26,11 +33,10 @@ class HomeController < ApplicationController
 
   def graph
     @product = Product.new
+    @record = Record.all
     @record_a = Record.where(prod_name: "Aricept")
     @record_b = Record.where(prod_name: "metycobal")
     @record_c = Record.where(prod_name: "myonal")
-    @record_d = Record.where(prod_name: "detantol")
-    @record_e = Record.where(prod_name: "Lenvima")
 
     @data = [
       {
@@ -44,6 +50,10 @@ class HomeController < ApplicationController
     ]
   end
 
-
+  def graph_select
+    @product = Product.new
+    @record = Record.where(prod_name: params[:search])
+    redirect_to("/graph_select")
+  end
 
 end

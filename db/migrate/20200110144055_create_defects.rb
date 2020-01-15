@@ -1,6 +1,7 @@
 class CreateDefects < ActiveRecord::Migration[5.2]
   def change
     create_table :defects do |t|
+      t.references :record
       t.string :def_type
       t.date :date
       t.integer :def_count

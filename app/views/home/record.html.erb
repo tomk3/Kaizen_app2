@@ -5,7 +5,7 @@
                 <div class="card-header">本日の製造記録データを下記フォームに記入してください。</div>
                 <div class="card-body">
 
-                    <%= form_tag("/record/create") do %>
+                    <%= form_with @record, url: record_create_path do |f| %>
                         <div class="form-group row">
                             <label for="date" class="col-md-4 col-form-label text-md-right">製造日</label>
                             <div class="col-md-6">
@@ -15,8 +15,8 @@
                         <div class="form-group row">
                             <label for="prod_name" class="col-md-4 col-form-label text-md-right">製造品目</label>
                             <div class="col-md-6">
-                              <%= form_for @product, url: product_new_path do |f| %>
-                                <%= f.collection_select :prod_name, Product.all, :id, :prod_name, {}, class: "form-control", :include_blank => true %>
+                              <%= form_with @product, url: record_path do |f| %>
+                                <%= f.collection_select :prod_name, Product.all, :prod_name, :prod_name, {class: "form-control", include_blank: true} %>
                               <% end %>
                             </div>
                         </div>
@@ -72,8 +72,8 @@
                                         <td>不良数</td>
                                       </tr>
                                       <tr>
-                                          <td><input type="text" name="name" class="form-control" name="def_type" required autofocus></td>
-                                          <td><input type="text" name="name" class="form-control" name="def_count" required autofocus></td>
+                                          <td><input type="text" class="form-control" name="def_type" required autofocus></td>
+                                          <td><input type="text" class="form-control" name="def_count" required autofocus></td>
                                           <td><button class="remove">-</button></td>
                                       </tr>
                                   </tbody>

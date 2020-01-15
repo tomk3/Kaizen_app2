@@ -7,20 +7,18 @@
 
                 <div class="card-header">KPI時系列推移</div>
                 <div class="card-body">
-
                   <div class="form-group row">
                       <label for="prod_name" class="col-md-4 col-form-label text-md-right">品目選択</label>
-                      <div class="col-md-10">
-                        <%= form_tag(graph_select_path,:method => 'get') do %>
-                          <%= form_for @product, url: product_new_path do |f| %>
-                            <%= f.collection_select :prod_name, Product.all, :id, :prod_name, {}, class: "form-control", :include_blank => true %>
-                          <% end %>
-                          
-                          <input type="submit">
+                      <%= form_tag("/graph_select",:method => 'get') do %>
+                        <%= text_field_tag :search %>
+                        <%= submit_tag 'Search', :name => nil %>
+                      <% end %>
+                      <div class="col-md-6 test3">
+                        <%= form_for @product, url: product_new_path do |f| %>
+                          <%= f.collection_select :prod_name, Product.all, :id, :prod_name, {}, class: "form-control", include_blank: true, selected: @record.prod_name %>
                         <% end %>
                       </div>
                   </div>
-
                   <div class="form-group row">
                       <label for="date" class="col-md-2 col-form-label text-md-left">収率</label>
                       <div class="col-md-10">
